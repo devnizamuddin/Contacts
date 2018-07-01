@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    >
+
+
+    <include
+        android:id="@+id/app_bar_detail"
+        layout="@layout/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/app_bar_detail"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/clouds"
+                android:gravity="center"
+                android:id="@+id/contactImageLayout"
+                >
+
+                <ImageView
+                    android:id="@+id/personImg"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/image_icon" />
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/contactNameTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Miraz"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:layout_below="@+id/contactImageLayout"
+                android:padding="10dp"
+                />
+            <View
+                android:id="@+id/lineOne"
+                android:layout_below="@id/contactNameTv"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/silverColor"
+                />
+
+            <LinearLayout
+                android:id="@+id/outGoingLayout"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@+id/lineOne"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    >
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/call_blue"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Call"
+                        android:textSize="15dp"
+                        android:textColor="@color/skyBlue"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    >
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/message_blue"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Text"
+                        android:textSize="15sp"
+                        android:textColor="@color/skyBlue"
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:id="@+id/lineTwo"
+                android:layout_below="@id/outGoingLayout"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/silverColor"
+                />
+            <LinearLayout
+                android:id="@+id/numberLayout"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@id/lineTwo"
+                android:orientation="horizontal"
+                android:weightSum="10"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/call_icon"
+                    android:layout_weight="2"
+                    android:padding="25dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:text="01715577872"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/message_blue"
+                    android:layout_weight="2"
+                    android:padding="25dp"
+                    />
+
+
+            </LinearLayout>
+            <View
+                android:id="@+id/lineThree"
+                android:layout_below="@id/numberLayout"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/silverColor"
+                />
+            <LinearLayout
+                android:id="@+id/emailLayout"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@id/lineThree"
+                android:orientation="horizontal"
+                android:weightSum="10"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/email_icon"
+                    android:layout_weight="2"
+                    android:padding="25dp"
+                    />
+                <TextView
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:text="nshamrat7@gmail.com"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/email_blue"
+                    android:layout_weight="2"
+                    android:padding="25dp"
+                    />
+
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/lineFour"
+                android:layout_below="@id/emailLayout"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/silverColor"
+                />
+
+            <LinearLayout
+                android:id="@+id/addressLayout"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@id/lineFour"
+                android:orientation="horizontal"
+                android:weightSum="10"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/address_icon"
+                    android:layout_weight="2"
+                    android:padding="25dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:text="Ka-102 Joar Shahara, Vatara, Dhaka"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/address_blue"
+                    android:layout_weight="2"
+                    android:padding="25dp"
+                    />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+
+
+
+</RelativeLayout>

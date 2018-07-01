@@ -35,10 +35,12 @@ public class PersonalInfoInputActivity extends AppCompatActivity {
         personAddress = findViewById(R.id.addressEt);
         dataSource = new PersonalInfoDataSource(this);
 
+        //Toolbar View
         toolbar = findViewById(R.id.app_bar);
         toolbar.setTitle("Create Contact");
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 

@@ -55,10 +55,26 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.MyViewHo
                 @Override
                 public void onClick(View v) {
                     clickListener.onClick(personInfos.get(getAdapterPosition()));
+                }
+
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
                     clickListener.onLongClick(personInfos.get(getAdapterPosition()));
+
+                    return false;
                 }
             });
+
         }
+    }
+    public void updateContact(ArrayList<PersonInfo>personInfos){
+
+        this.personInfos = personInfos;
+        notifyDataSetChanged();
+
     }
     public interface ClickListener{
         void onClick(PersonInfo personInfo);

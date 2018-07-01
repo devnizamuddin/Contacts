@@ -1,6 +1,8 @@
 package com.example.nizamuddinshamrat.contacts;
 
-public class PersonInfo {
+import java.io.Serializable;
+
+public class PersonInfo implements Serializable {
 
     private int personId;
     private String personName;

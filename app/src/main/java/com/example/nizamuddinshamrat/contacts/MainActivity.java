@@ -3,11 +3,14 @@ package com.example.nizamuddinshamrat.contacts;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -17,22 +20,32 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements ContactAdapter.ClickListener {
 
+
     FloatingActionButton addContactFab;
     RecyclerView recyclerView;
     PersonalInfoDataSource dataSource;
     ContactAdapter contactAdapter;
+    ArrayList<PersonInfo>personalInfos;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //View items
         addContactFab = findViewById(R.id.addContactFab);
         recyclerView = findViewById(R.id.recyclerView);
+        toolbar = findViewById(R.id.mainAppBar);
 
+        //set App bar text
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Contacts");
+
+        //set Contact recyclerView
         dataSource =new PersonalInfoDataSource(this);
-        ArrayList<PersonInfo>personInfos = dataSource.getAllContacts();
-        contactAdapter = new ContactAdapter(this,personInfos,this);
+        personalInfos = dataSource.getAllContacts();
+        contactAdapter = new ContactAdapter(this,personalInfos,this);
 
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
 
@@ -40,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements ContactAdapter.Cl
         recyclerView.setAdapter(contactAdapter);
 
         //on Floating Action ber clicked
+        //Add contact Activity
         addContactFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,13 +67,20 @@ public class MainActivity extends AppCompatActivity implements ContactAdapter.Cl
 
     }
 
+    //on Contact Click
+    //Contact Detail
     @Override
     public void onClick(PersonInfo personInfo) {
 
+        Intent intent = new Intent(this,Contact_Detail_Activity.class);
+        intent.putExtra("contactInfo",personInfo);
+        startActivity(intent);
     }
 
+    //on Contact Long Click
+    //Delete Contact
     @Override
-    public void onLongClick(PersonInfo personInfo) {
+    public void onLongClick(final PersonInfo personInfo) {
 
         final int contactId = personInfo.getPersonId();
 
@@ -70,12 +91,18 @@ public class MainActivity extends AppCompatActivity implements ContactAdapter.Cl
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 boolean status = dataSource.deleteContact(contactId);
+                personalInfos.remove(personInfo);
+                contactAdapter.updateContact(personalInfos);
+                Toast.makeText(MainActivity.this, "Contact Deleted", Toast.LENGTH_SHORT).show();
+
             }
         });
         builder.setNegativeButton("No",null);
+        builder.show();
 
 
 
 
     }
+
 }

@@ -10,7 +10,7 @@
         android:id="@+id/contactImageS"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/name_icon"
+        android:src="@drawable/man_icon"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         />
