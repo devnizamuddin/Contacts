@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements ContactAdapter.Cl
     ArrayList<PersonInfo>personalInfos;
     Toolbar toolbar;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +39,10 @@ public class MainActivity extends AppCompatActivity implements ContactAdapter.Cl
         recyclerView = findViewById(R.id.recyclerView);
         toolbar = findViewById(R.id.mainAppBar);
 
+
         //set App bar text
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Contacts");
+        getSupportActionBar().setTitle("Contacts");
 
         //set Contact recyclerView
         dataSource =new PersonalInfoDataSource(this);
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements ContactAdapter.Cl
 
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(contactAdapter);
+
+
 
         //on Floating Action ber clicked
         //Add contact Activity

@@ -33,6 +33,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="50dp"
             android:id="@+id/addContactFab"
+            app:fabSize="normal"
             />
     </android.support.design.widget.CoordinatorLayout>
 

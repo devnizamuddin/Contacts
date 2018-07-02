@@ -19,7 +19,10 @@ public class PersonalInfoInputActivity extends AppCompatActivity {
     private ImageView personImage;
     private EditText personName, personNumber, personEmail, personAddress;
     android.support.v7.widget.Toolbar toolbar;
+
+    //Objects
     PersonalInfoDataSource dataSource;
+    PersonInfo personInfoSerializable;
 
 
 
@@ -35,13 +38,28 @@ public class PersonalInfoInputActivity extends AppCompatActivity {
         personAddress = findViewById(R.id.addressEt);
         dataSource = new PersonalInfoDataSource(this);
 
+        personInfoSerializable = (PersonInfo) getIntent().getSerializableExtra("ContactDetail");
+
         //Toolbar View
         toolbar = findViewById(R.id.app_bar);
-        toolbar.setTitle("Create Contact");
         setSupportActionBar(toolbar);
+
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if (personInfoSerializable != null){
+
+            getSupportActionBar().setTitle("Edit Contact");
+            personName.setText(personInfoSerializable.getPersonName());
+            personNumber.setText(personInfoSerializable.getPersonNumber());
+            personEmail.setText(personInfoSerializable.getPersonEmail());
+            personAddress.setText(personInfoSerializable.getPersonAddress());
+
+        }
+        else {
+            getSupportActionBar().setTitle("Create Contacts");
+        }
 
 
 
@@ -87,16 +105,38 @@ public class PersonalInfoInputActivity extends AppCompatActivity {
 
        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(number) ) {
            //Name and number hare
-
            PersonInfo personInfo = new PersonInfo(name,number,email,address);
-          boolean status =  dataSource.insertContact(personInfo);
-          if (status){
-              Toast.makeText(this, "Contact Saved", Toast.LENGTH_SHORT).show();
-              startActivity(new Intent(this,MainActivity.class));
-          }
-          else {
-              Toast.makeText(this, "Something Error", Toast.LENGTH_SHORT).show();
-          }
+
+           if (personInfoSerializable == null){
+
+               //Insert Contact
+               boolean status =  dataSource.insertContact(personInfo);
+               if (status){
+                   Toast.makeText(this, "Contact Saved"+email, Toast.LENGTH_SHORT).show();
+                   startActivity(new Intent(this,MainActivity.class));
+                   finish();
+
+               }
+               else {
+                   Toast.makeText(this, "Something Error", Toast.LENGTH_SHORT).show();
+               }
+           }
+           else {
+
+               //update Contact
+               boolean status =  dataSource.editContact(personInfo,personInfoSerializable.getPersonId());
+               if (status){
+                   Toast.makeText(this, "Contact Edited", Toast.LENGTH_SHORT).show();
+                   startActivity(new Intent(this,MainActivity.class));
+                   finish();
+
+               }
+               else {
+                   Toast.makeText(this, "Something Error", Toast.LENGTH_SHORT).show();
+               }
+           }
+
+
 
        }
        else if (!TextUtils.isEmpty(number) && TextUtils.isEmpty(name)){

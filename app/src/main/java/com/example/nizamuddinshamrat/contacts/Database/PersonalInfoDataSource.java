@@ -33,7 +33,7 @@ public class PersonalInfoDataSource {
         ContentValues values = new ContentValues();
         values.put(PersonalInfoDatabaseHelper.COL_PERSON_NAME,personInfo.getPersonName());
         values.put(PersonalInfoDatabaseHelper.COL_PERSON_NUMBER,personInfo.getPersonNumber());
-        values.put(PersonalInfoDatabaseHelper.COL_PERSON_EMAIL,personInfo.getPersonAddress());
+        values.put(PersonalInfoDatabaseHelper.COL_PERSON_EMAIL,personInfo.getPersonEmail());
         values.put(PersonalInfoDatabaseHelper.COL_PERSON_ADDRESS,personInfo.getPersonAddress());
 
         long insertedRow = database.insert(PersonalInfoDatabaseHelper.TABLE_CONTACTS,null,values);
@@ -90,6 +90,26 @@ public class PersonalInfoDataSource {
         else {
             return false;
         }
+
+    }
+    public boolean editContact (PersonInfo personInfo, int contactId){
+        this.databaseOpen();
+
+        ContentValues values = new ContentValues();
+        values.put(PersonalInfoDatabaseHelper.COL_PERSON_NAME,personInfo.getPersonName());
+        values.put(PersonalInfoDatabaseHelper.COL_PERSON_NUMBER,personInfo.getPersonNumber());
+        values.put(PersonalInfoDatabaseHelper.COL_PERSON_EMAIL,personInfo.getPersonEmail());
+        values.put(PersonalInfoDatabaseHelper.COL_PERSON_ADDRESS,personInfo.getPersonAddress());
+
+        int editContact = database.update(PersonalInfoDatabaseHelper.TABLE_CONTACTS,values,
+                PersonalInfoDatabaseHelper.COL_PERSON_ID+"="+contactId,null);
+        if (editContact>0){
+            return true;
+        }
+        else {
+            return false;
+        }
+
 
     }
 }
